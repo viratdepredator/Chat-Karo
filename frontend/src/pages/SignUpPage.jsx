@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useAuthStore } from '../store/useAuthStore';
-import { Eye, EyeOff, Loader2, Lock, LucideEyeOff, Mail, MessageSquare, User } from 'lucide-react';
+import { Eye, EyeOff, Loader2, Lock, LucideEyeOff, Mail, MessageSquare, User, User2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AuthImagePattern from '../components/AuthImagePattern';
 import toast from "react-hot-toast";
@@ -57,8 +57,8 @@ function SignUpPage() {
               </label>
               <div className='relative'>
                 <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-                  <User className="size-5 text-base-content/40" />
-                </div>
+                  <User2 className="size-5 text-base-content/40" />
+                </div> 
                 <input
                   type='text'
                   className={`input input-bordered w-full pl-10`}
@@ -106,7 +106,7 @@ function SignUpPage() {
                   className='absolute inset-y-0 right-0 pr-3 flex items-center'
                   onClick={() => setShowPassword(!showPassword)}>
                   {showPassword ? (
-                    <LucideEyeOff className='size-5 text-base-content/40' />
+                    <EyeOff className='size-5 text-base-content/40' />
                   ) : (
                     <Eye className="size-5 text-base-content/40" />
                   )}

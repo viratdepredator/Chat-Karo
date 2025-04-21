@@ -13,7 +13,7 @@ export const useAuthStore = create ((set)=>({
     onlineUsers: [],
     socket: null,
  
-    checkAuth:async()=>{
+    checkAuth:async()=>{ 
         try {
             const res = await axiosInstance.get("/auth/check"); 
 
@@ -43,5 +43,34 @@ export const useAuthStore = create ((set)=>({
          finally{
             set({isSigningUp:false});
          }
-    }
+    },
+
+    login:async(data)=>{
+        set({isLoggingIn:true});
+        try {
+            const res = await axiosInstance.post("/auth/login",data);
+            set({authUser:res.data});
+            toast.success("Logged in successfully");
+        } catch (error) {
+            if(error.response.data.message==null){
+                toast.error("User Not Found");
+            }
+            else{
+            toast.error(error.response.data.message);
+            }
+        }
+        finally{
+            set({isLoggingIn:false});
+        }
+    },
+
+    logout:async()=>{
+        try {
+            await axiosInstance.post("/auth/logout");
+            set({authUser:null});
+            toast.success("Logged out successfully");
+        } catch (error) {
+            toast.error(error.response.data.message);
+        }
+    },
 }))
